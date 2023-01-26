@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/dashboard}">
+<head>
+    <title>Automatic Popup</title>
+    <!--Google Fonts-->
+    
+</head>
+<body>
+	<section layout:fragment="header">
+    <h1>
+         List
+        <small>Control panel</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="/"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active">Dashboard</li>
+    </ol>
+</section>
+ 
+ <div class="main-content container-fluid" layout:fragment="content">   
+ 
+       
+
+	<div class="box-footer center">
+                        <a th:href="@{/newProfil}">
+                            <button type="button" class="btn btn-primary pull-right"><i class="fa fa-plus"></i> Add new</button>
+                        </a>
+                        <!--<form th:action="@{/product/list}" method="get">
+                            <input type="search" th:value="${param.search}" name='search' placeholder="search">
+                            <button type="submit">Search</button>
+                        </form>-->
+                    </div>
+   
+   
+   <div class="card">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h4 class="card-title">LISTE DES PROFILS</h4>
+                    <div class="d-flex ">
+                        <i data-feather="download"></i>
+                    </div>
+                </div>
+                <div class="card-body px-0 pb-0">
+                    <div class="table-responsive">
+                        <table class='table mb-0' id="table1">
+                            <thead>
+                            <tr>
+                                <th>ID Profil</th>
+                                <th>Fonction</th>
+                                <th>Cout</th>
+                                <th>Actions</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="profil : ${profil}">
+				                <td th:text="${profil.id}">Profil ID</td>
+				                <td th:text="${profil.fonction}">Fonction</td>
+				                <td th:text="${profil.cout}">Cout</td>
+				                
+				                <td>
+				                    <a href="#" class="btn btn-primary btn-xs purple editView" title="Edit" th:href="@{'/editProfil/' + ${profil.id}}">Edit</a>
+				                    &nbsp;&nbsp;&nbsp;
+				                    <a href="#" class="btn btn-danger btn-xs purple deleteView" title="Delete" th:href="@{'/deleteProfil/' + ${profil.id}}">Delete</a>
+				                </td>
+				            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+   
+   
+</div>
+
+        <!-- <h2>Automatic Pop-Up</h2>
+        <p>
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Expedita distinctio fugiat alias iure qui, commodi minima magni ullam aliquam dignissimos?
+        </p> -->
+        
+    <!--Script-->
+    
+</body>
+</html>

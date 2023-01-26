@@ -1,0 +1,878 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/dashboard}">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="assets/css/app.css">
+    <link rel="shortcut icon" href="assets/images/logo_ARISTARC.png" type="image/x-icon">
+</head>
+<body>
+<div class="main-content container-fluid" layout:fragment="content">
+<div class="page-title">
+    <h3>Dashboard</h3>
+    
+</div>
+<section class="section">
+    <!-- <div class="row mb-2">
+        <div class="col-12 col-md-3">
+            <div class="card card-statistic">
+                <div class="card-body p-0">
+                    <div class="d-flex flex-column">
+                        <div class='px-3 py-3 d-flex justify-content-between'>
+                            <h3 class='card-title'>Durée ressource</h3>
+                            <div class="card-right d-flex align-items-center">
+                                <label th:text="${pourcent + ' days'}"></label>
+                            </div>
+                        </div>
+                        <div class="chart-wrapper">
+                            <canvas id="canvas1" style="height:100px !important"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-3">
+            <div class="card card-statistic">
+                <div class="card-body p-0">
+                    <div class="d-flex flex-column">
+                        <div class='px-3 py-3 d-flex justify-content-between'>
+                            <h3 class='card-title'>Revenue</h3>
+                            <div class="card-right d-flex align-items-center">
+                                <p>$532,2 </p>
+                            </div>
+                        </div>
+                        <div class="chart-wrapper">
+                            <canvas id="canvas2" style="height:100px !important"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-3">
+            <div class="card card-statistic">
+                <div class="card-body p-0">
+                    <div class="d-flex flex-column">
+                        <div class='px-3 py-3 d-flex justify-content-between'>
+                            <h3 class='card-title'>ORDERS</h3>
+                            <div class="card-right d-flex align-items-center">
+                                <p>1,544 </p>
+                            </div>
+                        </div>
+                        <div class="chart-wrapper">
+                            <canvas id="canvas3" style="height:100px !important"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-3">
+            <div class="card card-statistic">
+                <div class="card-body p-0">
+                    <div class="d-flex flex-column">
+                        <div class='px-3 py-3 d-flex justify-content-between'>
+                            <h3 class='card-title'>Sales Today</h3>
+                            <div class="card-right d-flex align-items-center">
+                                <p>423 </p>
+                            </div>
+                        </div>
+                        <div class="chart-wrapper">
+                            <canvas id="canvas4" style="height:100px !important"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> -->
+    <div class="row mb-4">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class='card-heading p-1 pl-3'>Sales</h3>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6 col-4">
+                            <div class="pl-3">
+                                <h1 class='mt-5'>$21,102</h1>
+                                <p class='text-xs'><span class="text-green"><i data-feather="bar-chart"
+                                                                               width="15"></i> +19%</span> than last month</p>
+                                <div class="legends">
+                                    <div class="legend d-flex flex-row align-items-center">
+                                        <div class='w-3 h-3 rounded-full bg-info me-2'></div><span
+                                            class='text-xs'>Last Month</span>
+                                    </div>
+                                    <div class="legend d-flex flex-row align-items-center">
+                                        <div class='w-3 h-3 rounded-full bg-blue me-2'></div><span
+                                            class='text-xs'>Current Month</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-8 col-12">
+                            <canvas id="bar"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            
+             
+            <!-- <div class="card">
+                <div class="card-header">
+                    <h3 class='card-heading p-1 pl-3'>Délai de livraison</h3>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        
+                        <div class="col-md-4 col-12">
+                        <div class="col-md-6 col-4">
+                        
+                        <div class="containez">
+							<h2 align="center">Delai livraison</h2>
+					
+							<div  id="containez"
+								style="width: 400px; height: 400px; margin: 0 auto"></div>
+						</div> 
+						 <script
+							src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+						
+						<script
+							src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+						<script src="https://code.highcharts.com/highcharts.js"></script>
+						<script src="https://code.highcharts.com/modules/exporting.js"></script>
+						<script src="https://code.highcharts.com/modules/export-data.js"></script>
+						<script src="https://code.highcharts.com/modules/accessibility.js"></script>
+						
+						<figure class="highcharts-figure">
+						  <div id="containez"></div>
+						  <p class="highcharts-description">
+						    Ce graphique nous permet de visualiser le délai moyen de livraison par projet 
+						    et de faire un comparatif avec le delai moyen qui était prévu
+						  </p>
+						</figure>
+						
+						
+						
+						
+						<script th:inline="javascript">
+					    $(function(){
+					    Highcharts.chart('containez', {
+					        chart: {
+					            type: 'column'
+					        },
+					        title: {
+					            text: ''
+					        },
+					        subtitle: {
+					            text: 'Delai'
+					        },
+					        xAxis: {
+					            categories: [[${projett}]],
+					            crosshair: true
+					        },
+					        yAxis: {
+					            min: 0,
+					            max:30,
+					            title: {
+					                text: 'Nbre de jours'
+					            }
+					        },
+					        tooltip: {
+					            headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+					            pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+					            '<td style="padding:0"><b>{point.y:f} days</b></td></tr>',
+					            footerFormat: '</table>',
+					            shared: true,
+					            useHTML: true
+					        },
+					        plotOptions: {
+					            column: {
+					                pointPadding: 0.2,
+					                borderWidth: 0
+					            }
+					        },
+					        series: [{
+					        	name: 'delai previsionnel',
+					            data: [[${delaiprojett}]]
+					           
+					        
+					        },{
+					        	name: 'delai réel',
+					            data: [[${delaiprojetts}]]
+					           
+					        
+					        }]
+					      });
+					    });
+					</script>
+                        
+                        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+                        
+                        
+                        <canvas id="myChartt" style="width:100%;max-width:700px"></canvas>
+
+						<script>
+						var xValues = "[[${projett}]]";
+						var yValues = "[[${delaiprojett}]]";
+						var zValues = "[[${delaiprojetts}]]";
+						
+						
+						
+
+						new Chart("myChartt", {
+						  type: "line",
+						  data: {
+						    labels: xValues,
+						    datasets: [{
+						      fill: false,
+						      
+						      
+						      borderColor: "red",
+						      data: yValues
+						    },{
+							      fill: false,
+							      
+							      
+							      borderColor: "blue",
+							      data: zValues
+							    }]
+						  },
+						  options: {
+						    legend: {display: true},
+						    
+						  }
+						});
+						</script>
+                        		 
+                         
+						
+						
+                            <canvas id="bari"></canvas> 
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+            
+            
+            
+            
+            
+            
+            <div class="card">
+                <div class="card-header">
+                    <h3 class='card-heading p-1 pl-3'>Montant reçu par type d'offre</h3>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        
+                        <div class="col-md-6 col-4">
+                        
+                        <div class="containeg">
+							<h2 align="center"></h2>
+					
+							<div id="containeg"
+								style="width: 400px; height: 400px; margin: 0 auto"></div>
+						</div> 
+						 <script
+							src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+						
+						<script
+							src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+						<script src="https://code.highcharts.com/highcharts.js"></script>
+						<script src="https://code.highcharts.com/modules/exporting.js"></script>
+						<script src="https://code.highcharts.com/modules/export-data.js"></script>
+						<script src="https://code.highcharts.com/modules/accessibility.js"></script>
+						<script th:inline="javascript">
+						
+						var transactions = [[${delaiprojets}]];
+						
+						
+						
+						
+					    $(function(){
+					    	
+					    Highcharts.chart('containeg', {
+					        chart: {
+					            type: 'column'
+					        },
+					        title: {
+					            text: 'Offre'
+					        },
+					        subtitle: {
+					            text: ''
+					        },
+					        xAxis: {
+					            categories: [[${projet}]],
+					            crosshair: true
+					        },
+					        yAxis: {
+					            min: 10000,
+					            max:300000,
+					            title: {
+					                text: 'Montant'
+					            }
+					        },
+					        tooltip: {
+					            headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+					            pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+					            '<td style="padding:0"><b>{point.y:.1f} fcfa</b></td></tr>',
+					            footerFormat: '</table>',
+					            shared: true,
+					            useHTML: true
+					        },
+					        plotOptions: {
+					            column: {
+					                pointPadding: 0.2,
+					                borderWidth: 0
+					            }
+					        },
+					        series: [{
+					        	name: 'Montant',
+					            data: [[${delaiprojets}]]
+					           
+					        
+					        }
+					        ]
+					      });
+					    });
+					</script> 
+                        
+                        <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+                        
+                        
+                        <canvas id="myChartte" style="width:100%;max-width:700px"></canvas>
+
+						<script>
+						var xValues = "[[${projet}]]";
+						var yValues = "[[${delaiprojet}]]";
+						
+						
+						
+
+						new Chart("myChartte", {
+						  type: "bar",
+						  data: {
+						    labels: xValues,
+						    datasets: [{
+						      fill: false,
+						      
+						      
+						      borderColor: "red",
+						      data: yValues
+						    }]
+						  },
+						  options: {
+						    legend: {display: true},
+						    
+						  }
+						});
+						</script> -->
+                        		 
+                         
+						
+						
+                            <!-- <canvas id="bari"></canvas> --> 
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            </div>
+            
+            
+            <div class="col-md-6">
+            
+            <div class="card">
+                <div class="card-header">
+                    <h3 class='card-heading p-1 pl-3'>Délai de livraison</h3>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        
+                       <!--  <div class="col-md-4 col-12"> -->
+                        <div class="col-md-6 col-4">
+                        
+                        <div class="containez">
+							<!-- <h2 align="center">Delai livraison</h2> -->
+					
+							<div  id="containez"
+								style="width: 400px; height: 400px; margin: 0 auto"></div>
+						</div> 
+						 <script
+							src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+						
+						<script
+							src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+						<script src="https://code.highcharts.com/highcharts.js"></script>
+						<script src="https://code.highcharts.com/modules/exporting.js"></script>
+						<script src="https://code.highcharts.com/modules/export-data.js"></script>
+						<script src="https://code.highcharts.com/modules/accessibility.js"></script>
+						
+						<!-- <figure class="highcharts-figure">
+						  <div id="containez"></div>
+						  <p class="highcharts-description">
+						    Ce graphique nous permet de visualiser le délai moyen de livraison par projet 
+						    et de faire un comparatif avec le delai moyen qui était prévu
+						  </p>
+						</figure> -->
+						
+						
+						
+						
+						<script th:inline="javascript">
+					    $(function(){
+					    Highcharts.chart('containez', {
+					        chart: {
+					            type: 'column'
+					        },
+					        title: {
+					            text: ''
+					        },
+					        subtitle: {
+					            text: 'Delai'
+					        },
+					        xAxis: {
+					            categories: [[${projett}]],
+					            crosshair: true
+					        },
+					        yAxis: {
+					            min: 0,
+					            max:30,
+					            title: {
+					                text: 'Nbre de jours'
+					            }
+					        },
+					        tooltip: {
+					            headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+					            pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+					            '<td style="padding:0"><b>{point.y:f} days</b></td></tr>',
+					            footerFormat: '</table>',
+					            shared: true,
+					            useHTML: true
+					        },
+					        plotOptions: {
+					            column: {
+					                pointPadding: 0.2,
+					                borderWidth: 0
+					            }
+					        },
+					        series: [{
+					        	name: 'delai previsionnel',
+					            data: [[${delaiprojett}]]
+					           
+					        
+					        },{
+					        	name: 'delai réel',
+					            data: [[${delaiprojetts}]]
+					           
+					        
+					        }]
+					      });
+					    });
+					</script>
+                        
+                        <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+                        
+                        
+                        <canvas id="myChartt" style="width:100%;max-width:700px"></canvas>
+
+						<script>
+						var xValues = "[[${projett}]]";
+						var yValues = "[[${delaiprojett}]]";
+						var zValues = "[[${delaiprojetts}]]";
+						
+						
+						
+
+						new Chart("myChartt", {
+						  type: "line",
+						  data: {
+						    labels: xValues,
+						    datasets: [{
+						      fill: false,
+						      
+						      
+						      borderColor: "red",
+						      data: yValues
+						    },{
+							      fill: false,
+							      
+							      
+							      borderColor: "blue",
+							      data: zValues
+							    }]
+						  },
+						  options: {
+						    legend: {display: true},
+						    
+						  }
+						});
+						</script> -->
+                        		 
+                         
+						
+						
+                            <!-- <canvas id="bari"></canvas> --> 
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            
+            <div class="card">
+                <div class="card-header">
+                    <h3 class='card-heading p-1 pl-3'>Pourcentage d'atteinte de l'objectif</h3>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        
+                        <div class="col-md-6 col-4">
+                        
+                        <div class="containeu">
+							<h2 align="center"></h2>
+					
+							<div  id="containeu"
+								style="width: 400px; height: 400px; margin: 0 auto"></div>
+						</div> 
+						 <script
+							src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+						
+						<script
+							src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+						<script src="https://code.highcharts.com/highcharts.js"></script>
+						<script src="https://code.highcharts.com/modules/exporting.js"></script>
+						<script src="https://code.highcharts.com/modules/export-data.js"></script>
+						<script src="https://code.highcharts.com/modules/accessibility.js"></script>
+						
+						
+						<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/data.js"></script>
+<script src="https://code.highcharts.com/modules/drilldown.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
+<script src="https://code.highcharts.com/modules/accessibility.js"></script>
+						<script th:inline="javascript">
+						
+						
+						
+						
+						
+						
+					    $(function(){
+					    	
+					    	
+					    	// Data retrieved from https://netmarketshare.com
+					    	Highcharts.chart('containeu', {
+					    	  chart: {
+					    		  plotBackgroundColor: null,
+					    		    plotBorderWidth: null,
+					    		    plotShadow: false,
+					    	    type: 'pie'
+					    	  },
+					    	  title: {
+					    	    text: 'Montant facture actuel par rapport a l objectif annuel'
+					    	  },
+					    	  tooltip: {
+					    	    pointFormat: '{series.name}: <b>{point.y:.1f}%</b>'
+					    	  },
+					    	  accessibility: {
+					    	    point: {
+					    	      valueSuffix: '%'
+					    	    }
+					    	  },
+					    	  plotOptions: {
+					    	    pie: {
+					    	      allowPointSelect: true,
+					    	      cursor: 'pointer',
+					    	      dataLabels: {
+					    	        enabled: true,
+					    	        format: '<b>{point.name}</b>: {point.y:.1f} %'
+					    	      }
+					    	    }
+					    	  },
+					    	  series: [{
+					    	    name: 'objectif',
+					    	    colorByPoint: true,
+					    	    data: [{
+					    	        name: 'Objectif atteint',
+					    	        y: [[${pourcent}]]
+					    	      },
+					    	      {
+						    	        name: 'Objectif restant',
+						    	        y: [[${pourcentRestant}]]
+						    	      }
+					    	    	]
+					    	  }]
+					    	});
+					    	
+					    	
+					    });
+					</script>
+                        
+                        <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+                        
+                        
+                        <canvas id="myChartta" style="width:100%;max-width:700px"></canvas>
+
+						<script>
+						var xValues = "[[${anneeObj}]]";
+						var yValues = "[[${pourcent}]]";
+						
+						
+						
+
+						new Chart("myChartta", {
+						  type: "bar",
+						  data: {
+						    labels: xValues,
+						    datasets: [{
+						      fill: false,
+						      
+						      
+						      borderColor: "red",
+						      data: yValues
+						    }]
+						  },
+						  options: {
+						    legend: {display: true},
+						    
+						  }
+						});
+						</script> -->
+                        		 
+                         
+						
+						
+                            <!-- <canvas id="bari"></canvas> --> 
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- <div class="card">
+                <div class="card-header">
+                    <h3 class='card-heading p-1 pl-3'>Pourcentage d'atteinte à l'objectif</h3>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        
+                        <div class="col-md-8 col-12">
+                        
+                        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+                        
+                        
+                        <canvas id="myCharttr" style="width:100%;max-width:700px"></canvas>
+
+						<script>
+						var xValues = "[[${anneeObj}]]";
+						var yValues = "[[${pourcent}]]";
+						
+						
+						
+
+						new Chart("myCharttr", {
+						  type: "bar",
+						  data: {
+						    labels: xValues,
+						    datasets: [{
+						      fill: false,
+						      
+						      
+						      borderColor: "red",
+						      data: yValues
+						    }]
+						  },
+						  options: {
+						    legend: {display: true},
+						    
+						  }
+						});
+						</script>
+                        		 
+                         
+						
+						
+                            <canvas id="bari"></canvas> 
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+            <!-- <div class="card">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h4 class="card-title">Orders Today</h4>
+                    <div class="d-flex ">
+                        <i data-feather="download"></i>
+                    </div>
+                </div>
+                <div class="card-body px-0 pb-0">
+                    <div class="table-responsive">
+                        <table class='table mb-0' id="table1">
+                            <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Phone</th>
+                                <th>City</th>
+                                <th>Status</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>Graiden</td>
+                                <td>vehicula.aliquet@semconsequat.co.uk</td>
+                                <td>076 4820 8838</td>
+                                <td>Offenburg</td>
+                                <td>
+                                    <span class="badge bg-success">Active</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Dale</td>
+                                <td>fringilla.euismod.enim@quam.ca</td>
+                                <td>0500 527693</td>
+                                <td>New Quay</td>
+                                <td>
+                                    <span class="badge bg-success">Active</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Nathaniel</td>
+                                <td>mi.Duis@diam.edu</td>
+                                <td>(012165) 76278</td>
+                                <td>Grumo Appula</td>
+                                <td>
+                                    <span class="badge bg-danger">Inactive</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Darius</td>
+                                <td>velit@nec.com</td>
+                                <td>0309 690 7871</td>
+                                <td>Ways</td>
+                                <td>
+                                    <span class="badge bg-success">Active</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Ganteng</td>
+                                <td>velit@nec.com</td>
+                                <td>0309 690 7871</td>
+                                <td>Ways</td>
+                                <td>
+                                    <span class="badge bg-success">Active</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Oleg</td>
+                                <td>rhoncus.id@Aliquamauctorvelit.net</td>
+                                <td>0500 441046</td>
+                                <td>Rossignol</td>
+                                <td>
+                                    <span class="badge bg-success">Active</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Kermit</td>
+                                <td>diam.Sed.diam@anteVivamusnon.org</td>
+                                <td>(01653) 27844</td>
+                                <td>Patna</td>
+                                <td>
+                                    <span class="badge bg-success">Active</span>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div> -->
+        </div>
+        <!-- <div class="col-md-4">
+            <div class="card ">
+                <div class="card-header">
+                    <h4>Your Earnings</h4>
+                </div>
+                <div class="card-body">
+                    <div id="radialBars"></div>
+                    <div class="text-center mb-5">
+                        <h6>From last month</h6>
+                        <h1 class='text-green'>+$2,134</h1>
+                    </div>
+                </div>
+            </div>
+            <div class="card widget-todo">
+                <div
+                        class="card-header border-bottom d-flex justify-content-between align-items-center">
+                    <h4 class="card-title d-flex">
+                        <i class='bx bx-check font-medium-5 pl-25 pr-75'></i>Progress
+                    </h4>
+
+                </div>
+                <div class="card-body px-0 py-1">
+                    <table class='table table-borderless'>
+                        <tr>
+                            <td class='col-3'>UI Design</td>
+                            <td class='col-6'>
+                                <div class="progress progress-info">
+                                    <div class="progress-bar" role="progressbar" style="width: 60%"
+                                         aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                            </td>
+                            <td class='col-3 text-center'>60%</td>
+                        </tr>
+                        <tr>
+                            <td class='col-3'>VueJS</td>
+                            <td class='col-6'>
+                                <div class="progress progress-success">
+                                    <div class="progress-bar" role="progressbar" style="width: 35%"
+                                         aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                            </td>
+                            <td class='col-3 text-center'>30%</td>
+                        </tr>
+                        <tr>
+                            <td class='col-3'>Laravel</td>
+                            <td class='col-6'>
+                                <div class="progress progress-danger">
+                                    <div class="progress-bar" role="progressbar" style="width: 50%"
+                                         aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                            </td>
+                            <td class='col-3 text-center'>50%</td>
+                        </tr>
+                        <tr>
+                            <td class='col-3'>ReactJS</td>
+                            <td class='col-6'>
+                                <div class="progress progress-primary">
+                                    <div class="progress-bar" role="progressbar" style="width: 80%"
+                                         aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                            </td>
+                            <td class='col-3 text-center'>80%</td>
+                        </tr>
+                        <tr>
+                            <td class='col-3'>Go</td>
+                            <td class='col-6'>
+                                <div class="progress progress-secondary">
+                                    <div class="progress-bar" role="progressbar" style="width: 65%"
+                                         aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                            </td>
+                            <td class='col-3 text-center'>65%</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div> -->
+    </div>
+</section> 
+
+
+
+</div>
+<!-- <th:block layout:fragment="script">
+<script th:inline="javascript">
+    var transactions =<c:out value="${delaiprojet}"/></script>
+<script th:src="@{/js/cust.js}"></script>
+</th:block> -->
+</body>
+</html>

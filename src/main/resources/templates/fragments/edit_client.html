@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/dashboard}">
+<head>
+    
+    <title>Chiffrage Aristarc</title>
+    
+   
+</head>
+<body>
+    
+            
+<div class="main-content container-fluid" layout:fragment="content">
+
+	
+	
+        
+        
+        
+        <section id="basic-horizontal-layouts">
+    <div class="row match-height">
+        <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+            <h4 class="card-title">EDITEZ LE CLIENT</h4>
+            </div>
+            <div class="card-content">
+            <div class="card-body">
+                <form class="form form-horizontal" action="#" th:action="@{/saveClient}" th:object="${client}"
+            method="post">
+                <div class="form-body">
+                    <div class="row">
+                    <!-- <div class="col-md-4">
+                        <label>PROJET ID</label>
+                    </div>
+                    <div class="col-md-8 form-group">
+                        <input type="number" th:field="*{id}" readonly="readonly" class="form-control"  placeholder="Profil Id">
+                    </div> -->
+                    
+                    
+                    <input type="hidden" th:field="*{id}" readonly="readonly" class="form-control"  placeholder="Profil Id">
+                    
+                    <div class="col-md-4">
+                        <label>Nom du client</label>
+                    </div>
+                    <div class="col-md-8 form-group">
+                        <input type="text" th:field="*{nomClient}"  class="form-control"  placeholder="Nom">
+                    </div>
+                    <div class="col-md-4">
+                        <label>Pays</label>
+                    </div>
+                    <div class="col-md-8 form-group">
+                        <input type="text" th:field="*{adresseClient.pays}"  class="form-control"  placeholder="Prenom">
+                    </div>
+                    <div class="col-md-4">
+                        <label>Ville</label>
+                    </div>
+                    <div class="col-md-8 form-group">
+                        <input type="text" th:field="*{adresseClient.ville}"  class="form-control"  placeholder="Cout">
+                    </div>
+                    <div class="col-md-4">
+                        <label>Adresse</label>
+                    </div>
+                    <div class="col-md-8 form-group">
+                    	<textarea class="form-control" th:field="*{adresseClient.nomAdresse}" rows="3"></textarea>
+                        
+                    </div>
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    <div class="col-12 d-flex justify-content-end">
+                    <a th:href="@{/listClients}">
+                    <button type="button">Cancel</button>
+                	</a>
+                    <button type="submit">Save</button>
+                    
+                    
+                        <!-- <button type="submit" class="btn btn-primary mr-1 mb-1">Submit</button>
+                        <button type="reset" class="btn btn-light-secondary mr-1 mb-1">Reset</button> -->
+                    
+                    </div>
+                    </div>
+                </div>
+                </form>
+            </div>
+            </div>
+        </div>
+        </div>
+        
+    </div>
+    </section>
+	
+	
+   
+   
+</div>
+
+           
+</body>
+</html>

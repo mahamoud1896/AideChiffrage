@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/dashboard}">
+<head>
+    
+    <title>Chiffrage Aristarc</title>
+   
+</head>
+<body>
+    
+<div class="main-content container-fluid" layout:fragment="content">
+
+
+	
+	
+	
+
+	
+	
+	
+	
+	
+	
+	<section id="basic-horizontal-layouts">
+    <div class="row match-height">
+        <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+            <h4 class="card-title">EDITER LE PROFIL</h4>
+            </div>
+            <div class="card-content">
+            <div class="card-body">
+                <form class="form form-horizontal" action="#" th:action="@{/saveProfil}" th:object="${profil}"
+            method="post">
+                <div class="form-body">
+                    <div class="row">
+                    <div class="col-md-4">
+                        <label>Profil ID</label>
+                    </div>
+                    <div class="col-md-8 form-group">
+                        <input type="text" th:field="*{id}" readonly="readonly" class="form-control"  placeholder="Profil Id">
+                    </div>
+                    <div class="col-md-4">
+                        <label>Fonction</label>
+                    </div>
+                    <div class="col-md-8 form-group">
+                        <input type="text" th:field="*{fonction}" class="form-control"  placeholder="Fonction">
+                    </div>
+                    <div class="col-md-4">
+                        <label>Cout Homme/Heure</label>
+                    </div>
+                    <div class="col-md-8 form-group">
+                        <input type="number" th:field="*{coutHommeHeure}"  class="form-control"  placeholder="Cout HommeHeure">
+                    </div>
+                    <div class="col-md-4">
+                        <label>Cout Homme/Jour</label>
+                    </div>
+                    <div class="col-md-8 form-group">
+                        <input type="number" th:field="*{coutHommeJour}"  class="form-control"  placeholder="Cout HommeJour">
+                    </div>
+                    <div class="col-md-4">
+                        <label>Marge</label>
+                    </div>
+                    <div class="col-md-8 form-group">
+                        <input type="number" th:field="*{marge}"  class="form-control"  placeholder="Marge">
+                    </div>
+                    
+                    
+                    
+                    <div class="col-12 d-flex justify-content-end">
+                    <a th:href="@{/listProfil}">
+                    <button type="button">Cancel</button>
+                	</a>
+                    <button type="submit">Save</button>
+                    
+                    
+                        <!-- <button type="submit" class="btn btn-primary mr-1 mb-1">Submit</button>
+                        <button type="reset" class="btn btn-light-secondary mr-1 mb-1">Reset</button> -->
+                    
+                    </div>
+                    </div>
+                </div>
+                </form>
+            </div>
+            </div>
+        </div>
+        </div>
+        
+    </div>
+    </section>
+	
+   
+   
+</div>
+
+            
+</body>
+</html>

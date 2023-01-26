@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/dashboard}">
+<head>
+   
+    <title>Chiffrage Aristarc</title>
+    
+    
+</head>
+<body>
+    
+            
+<div class="main-content container-fluid" layout:fragment="content">
+
+	
+	
+	<h1>Editer le type de projet</h1>
+        <br />
+        <form action="#" th:action="@{/saveTypeFP}" th:object="${typeProjet}"
+            method="post">
+ 
+            <table border="0" cellpadding="10">
+                <tr>             
+                    <td>ID:</td>
+                    <td>
+                        <input type="text" readonly="readonly" th:field="*{id}"  />
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td>Nom:</td>
+                    <td><input type="text" th:field="*{nom}" /></td>
+                </tr>
+                <tr>
+                <td>Offre <span>*</span></td>
+                
+                <td>
+                    <select th:field="*{offre}">
+                        <option value="">Select...</option>
+                        <option th:each="offreType : ${offre}" th:value="${offreType.id}" th:utext="${offreType.nomOffre}"/>
+                    </select>
+                    
+                </td>
+            </tr>          
+                                            
+                <tr>
+                    <td >
+                    <a th:href="@{/listTypeProj}">
+                    <button type="button">Cancel</button>
+                	</a>
+                    <button type="submit">Save</button> </td>
+                </tr>
+            </table>
+        </form>
+	
+	
+   
+   
+</div>
+
+  
+</body>
+</html>

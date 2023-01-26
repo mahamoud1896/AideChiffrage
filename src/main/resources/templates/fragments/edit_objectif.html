@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/dashboard}">
+<head>
+    
+    <title>Chiffrage Aristarc/Editez l'objectif annuel</title>
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js"></script>
+   <script type="text/javascript">
+      $(function() {
+         $( "#date" ).datepicker({dateFormat: 'yy'});
+      });
+   </script>
+   
+</head>
+<body>
+    
+<div class="main-content container-fluid" layout:fragment="content">
+
+	
+	
+	
+	
+	<section id="basic-horizontal-layouts">
+    <div class="row match-height">
+        <div class="col-md-6 col-12">
+        <div class="card">
+            <div class="card-header">
+            <h4 class="card-title">EDITEZ</h4>
+            </div>
+            <div class="card-content">
+            <div class="card-body">
+                <form class="form form-horizontal" action="#" th:action="@{/saveObj}" th:object="${obj}"
+            method="post">
+                <div class="form-body">
+                    <div class="row">
+                    <div class="col-md-4">
+                        <label>ID</label>
+                    </div>
+                    <div class="col-md-8 form-group">
+                        <input type="text" th:field="*{id}" readonly="readonly" class="form-control"  placeholder="Id">
+                    </div>
+                    <div class="col-md-4">
+                        <label>Montant de l'objectif annuel</label>
+                    </div>
+                    <div class="col-md-8 form-group">
+                        <input type="text" th:field="*{objectifAnuuel}" class="form-control"  placeholder="Montant">
+                    </div>
+                    <div class="col-md-4">
+                        <label>Année de l'objectif</label>
+                    </div>
+                    
+                    <div class="col-md-8 form-group">
+                    	<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js"></script>
+						   <script type="text/javascript">
+						      $(function() {
+						         $( "#date" ).datepicker({dateFormat: 'yy'});
+						      });
+						   </script>
+                        <input type="text" id="date" th:field="*{annee}" class="form-control"  placeholder="YYYY">
+                    </div>
+                    
+                    
+                    
+                    <div class="col-12 d-flex justify-content-end">
+                    <a th:href="@{/listObjectifs}">
+                    <button type="button">Cancel</button>
+                	</a>
+                    <button type="submit">Save</button>
+                    
+                    
+                        <!-- <button type="submit" class="btn btn-primary mr-1 mb-1">Submit</button>
+                        <button type="reset" class="btn btn-light-secondary mr-1 mb-1">Reset</button> -->
+                    
+                    </div>
+                    </div>
+                </div>
+                </form>
+            </div>
+            </div>
+        </div>
+        </div>
+        
+    </div>
+    </section>
+	
+   
+   
+</div>
+
+            
+</body>
+</html>

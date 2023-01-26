@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/dashboard}">
+<head>
+   
+    <title>Chiffrage Aristarc - Objectif annuel</title>
+    <link rel="shortcut icon" href="assets/images/logo_ARISTARC.png" type="image/x-icon">
+    
+    
+</head>
+<body>
+    
+
+<div class="main-content container-fluid" layout:fragment="content">  
+
+	<div class="box-footer center">
+                        <a th:href="@{/newObjectifAnnuel}">
+                            <button type="button" class="btn btn-primary pull-right"><i class="fa fa-plus"></i> Add new</button>
+                        </a>
+                        
+                       <!--  <form th:action="@{/product/list}" method="get">
+                            <input type="search" th:value="${param.search}" name='search' placeholder="search">
+                            <button type="submit">Search</button>
+                        </form> -->
+                    </div>
+   
+   
+   <div class="card">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h4 class="card-title">Objectif</h4>
+                    <div class="d-flex ">
+                        <i data-feather="download"></i>
+                    </div>
+                    <!-- <form th:action="@{/objectifAnnuel}">
+					    Filter: <input type="text" name="keyword" id="keyword" size="50" th:value="${keyword}" required />
+					    &nbsp;
+					    <input type="submit" value="Search" />
+					    &nbsp;
+					    <input type="button" value="Clear" id="btnClear" onclick="clearSearch()" />
+					</form>
+					
+					<script type="text/javascript">
+					    function clearSearch() {
+					        window.location = "[[@{/objectifAnnuel}]]";
+					    }
+					</script> -->
+                </div>
+                
+                
+                
+                
+                <div class="row" id="table-striped-dark">
+				  <div class="col-12">
+				    <div class="card">
+                
+                
+                
+                <div class="card-body px-0 pb-0">
+                    <div class="table-responsive">
+                        <table class="table table-striped table-dark mb-0" >
+                            <thead>
+                            <tr>
+                                <th>ID Objectif</th>
+                                <th>Montant de l'objectif annuel</th>
+                                <th>Année de l'objectif </th>
+                                
+                                
+                                
+                                <th>Actions</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="obj : ${obj}">
+				                <td th:text="${obj.id}"> ID</td>
+				                <td th:text="${obj.objectifAnuuel}">Objectif</td>
+				                <td th:text="${obj.annee}">Objectif</td>
+				                
+				                
+				                
+				                
+				                <td>
+				                    <a href="#" class="btn icon btn-secondary"  th:href="@{'/editObjectif/' + ${obj.id}}"><i data-feather="edit"></i></a>
+				                    &nbsp;&nbsp;&nbsp;
+				                    <a href="#" th:onclick="checker()" class="btn icon btn-danger" th:href="@{'/deleteObjectif/' + ${obj.id}}"><i data-feather="delete"></i></a>
+				                </td>
+				            </tr>
+                            </tbody>
+                        </table>
+                        
+                        <script type="text/javascript">
+                    	function checker(){
+                    		var result = confirm('Are you sure?');
+                    		
+                    		if(result == false){
+                    			event.preventDefault();
+                    		}
+                    	}
+                    </script> 
+                        
+                    </div>
+                    
+                    
+                    </div>
+                    </div>
+                    </div>
+                    
+                    
+                </div>
+            </div>
+   
+   
+</div>
+
+</body>
+</html>

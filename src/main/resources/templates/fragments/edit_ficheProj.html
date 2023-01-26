@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/dashboard}">
+<head>
+    
+    <title>Chiffrage Aristarc</title>
+    
+   
+</head>
+<body>
+    
+            
+<div class="main-content container-fluid" layout:fragment="content">
+
+	
+	
+        
+        
+        
+        <section id="basic-horizontal-layouts">
+    <div class="row match-height">
+        <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+            <h4 class="card-title">EDITEZ LA FICHE PROJET</h4>
+            </div>
+            <div class="card-content">
+            <div class="card-body">
+                <form class="form form-horizontal" action="#" th:action="@{/saveFP}" th:object="${ficheProjet}"
+            method="post">
+                <div class="form-body">
+                    <div class="row">
+                    <!-- <div class="col-md-4">
+                        <label>PROJET ID</label>
+                    </div>
+                    <div class="col-md-8 form-group">
+                        <input type="number" th:field="*{id}" readonly="readonly" class="form-control"  placeholder="Profil Id">
+                    </div> -->
+                    <!-- <div class="col-md-4">
+                        <label>Numero</label>
+                    </div>
+                    <div class="col-md-8 form-group">
+                        <input type="text" readonly="readonly" th:field="*{numProjet}" class="form-control"  placeholder="Nom">
+                    </div> -->
+                    
+                    <input type="hidden" th:field="*{id}" readonly="readonly" class="form-control"  placeholder="Profil Id">
+                    <div class="col-md-4">
+                        <label>Etat du projet</label>
+                    </div>
+                    <div class="col-md-8 form-group">
+                    	<select name="etatProjet" >
+										    <option th:each="etatProjet : ${T(com.chiffrageTest.entities.EtatProjet).values()}" 
+										        th:value="${etatProjet}" th:text="${etatProjet}"></option>
+										</select>
+                    	
+                        
+                    </div>
+                    
+                    <div class="col-md-4">
+                        <label>Nom du projet</label>
+                    </div>
+                    <div class="col-md-8 form-group">
+                        <input type="text" th:field="*{nomProjet}"  class="form-control"  placeholder="Nom">
+                    </div>
+                    <div class="col-md-4">
+                        <label>Nom du client</label>
+                    </div>
+                    <div class="col-md-8 form-group">
+                    	<select th:field="*{client}">
+                        <option value="">Select...</option>
+                        <option th:each="type : ${client}" th:value="${type.id}" th:utext="${type.nomClient}"/>
+                    	</select>
+                    	
+                        
+                    </div>
+                    <div class="col-md-4">
+                        <label>Objet du projet</label>
+                    </div>
+                    <div class="col-md-8 form-group">
+                    	<textarea class="form-control" th:field="*{description}" rows="3"></textarea>
+                        
+                    </div>
+                    
+                    
+                    <div class="col-md-4">
+                        <label>Cout global</label>
+                    </div>
+                    <div class="col-md-8 form-group">
+                        <input type="number" th:field="*{coutGlobal}"  class="form-control"  placeholder="Cout">
+                    </div>
+                    <div class="col-md-4">
+                        <label>Description Synthetique</label>
+                    </div>
+                    <div class="col-md-8 form-group">
+                    	<textarea class="form-control" th:field="*{descSynthetique}" rows="3"></textarea>
+                        
+                    </div>
+                    <div class="col-md-4">
+                        <label>Les ressources du projet</label>
+                    </div>
+                    <div class="col-md-8 form-group">
+                    	<select class="form-control" th:field="*{ressources}" multiple="multiple" >
+                        <option th:each="ress: ${listRessource}"
+                        		th:selected="${ficheProjet.ressources.contains(ress)}"
+                        		th:value="${ress.id}" th:text="${ress.prenom}"></option>
+                        
+                        
+                        <option th:each="ress : ${ressources}" th:value="${ress.id}" th:utext="${ress.prenom}"/>
+                    	</select>
+                    	
+                    	<!-- <label class="col-4 col-form-label">Action: </label> -->
+									<!-- <div class="col-8">
+										<th:block th:each="action: ${listRessource}">
+										<input type="checkbox" th:field="*{ressources}"
+											th:text="${action.prenom}" th:value="${action.id}" class="m-2" />
+										</th:block>
+									</div> -->
+                        
+                    </div>
+                    <div class="col-md-4">
+                        <label>Date de debut previsionnelle</label>
+                    </div>
+                    <div class="col-md-8 form-group">
+                        <input type="date" th:field="*{dateDebutPrev}"  class="form-control"  placeholder="Date debut prev">
+                    </div>
+                    <div class="col-md-4">
+                        <label>Date de fin previsionnelle</label>
+                    </div>
+                    <div class="col-md-8 form-group">
+                        <input type="date" th:field="*{dateFinPrev}"  class="form-control"  placeholder="Date fin prev">
+                    </div>
+                    <div class="col-md-4">
+                        <label>Date de debut effective</label>
+                    </div>
+                    <div class="col-md-8 form-group">
+                        <input type="date" th:field="*{dateDebutEffective}"  class="form-control"  placeholder="Date debut eff">
+                    </div>
+                    <div class="col-md-4">
+                        <label>Date de fin effective</label>
+                    </div>
+                    <div class="col-md-8 form-group">
+                        <input type="date" th:field="*{dateFinEffective}"  class="form-control"  placeholder="Date fin eff">
+                    </div>
+                    
+                    <div class="col-md-4">
+                        <label>Type de projet</label>
+                    </div>
+                    <div class="col-md-8 form-group">
+                    	<select th:field="*{typeProjet}">
+                        <option value="">Select...</option>
+                        <option th:each="type : ${typeProjet}" th:value="${type.id}" th:utext="${type.nom}"/>
+                    	</select>
+                    	
+                        
+                    </div>
+                    
+                    
+                    
+                    
+                    
+                    
+                    <div class="col-12 d-flex justify-content-end">
+                    <a th:href="@{/listProj}">
+                    <button type="button">Cancel</button>
+                	</a>
+                    <button type="submit">Save</button>
+                    
+                    
+                        <!-- <button type="submit" class="btn btn-primary mr-1 mb-1">Submit</button>
+                        <button type="reset" class="btn btn-light-secondary mr-1 mb-1">Reset</button> -->
+                    
+                    </div>
+                    </div>
+                </div>
+                </form>
+            </div>
+            </div>
+        </div>
+        </div>
+        
+    </div>
+    </section>
+	
+	
+   
+   
+</div>
+
+           
+</body>
+</html>

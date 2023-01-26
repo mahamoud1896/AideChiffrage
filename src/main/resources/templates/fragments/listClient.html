@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	  xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/dashboard}">
+<head>
+   
+    <title>Chiffrage Aristarc</title>
+    <link rel="stylesheet" href="assets/css/bootstrap.css">
+    
+    <link rel="stylesheet" href="assets/vendors/perfect-scrollbar/perfect-scrollbar.css">
+    <link rel="stylesheet" href="assets/css/app.css">
+    <link rel="shortcut icon" href="assets/images/logo_ARISTARC.png" type="image/x-icon">
+    
+    
+</head>
+<body>
+    
+            
+<div class="main-content container-fluid" layout:fragment="content">
+
+	
+	<div sec:authorize="isAuthenticated()" class="text-center p-3">
+		<form th:action="@{/logout}" method="post">
+			Welcome <b><span sec:authentication="name">Username</span></b>
+			&nbsp;
+			<input type="submit" value="Logout" />
+		</form>
+	</div>
+	
+
+	<div class="box-footer center">
+                        <a th:href="@{/newClient}">
+                            <button type="button" class="btn btn-primary pull-right"><i class="fa fa-plus"></i> Add new</button>
+                        </a>
+                        <!-- <a th:href="@{/listProj/exportProfil}">
+                            <button type="button" class="btn btn-primary pull-right"><i data-feather="download"></i> Export to PDF</button>
+                        </a> -->
+                        
+                        <!--<form th:action="@{/product/list}" method="get">
+                            <input type="search" th:value="${param.search}" name='search' placeholder="search">
+                            <button type="submit">Search</button>
+                        </form>-->
+                    </div>
+   
+   
+   <div class="card">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h4 class="card-title">LISTE DES CLIENTS</h4>
+                    <div sec:authorize="isAuthenticated()">
+                        <b><span sec:authentication="name"></span></b>
+                    </div>
+                </div>
+               
+                <div class="row" >
+				  <div class="col-12">
+				    <div class="card">
+				    
+                    <div class="table-responsive">
+                        <!-- <table class="table table-striped table-dark mb-0" id="table1" > -->
+                        <table class="table table-striped table-bordered table-hover mb-0">
+                        
+                            <thead>
+                            
+                            <tr>
+                                <!-- <th>ID Projet</th> -->
+                               <!--  <th><a th:href="@{'/pagee/' + ${currentPage} + '?sortField=typeProjet&sortDir=' + ${reverseSortDir}}">Type de projet</a></th>
+                                <th>Ressources</th>
+                                
+                                <th><a th:href="@{'/pagee/' + ${currentPage} + '?sortField=nomProjet&sortDir=' + ${reverseSortDir}}">Nom du projet</a></th>
+                                <th><a th:href="@{'/pagee/' + ${currentPage} + '?sortField=description&sortDir=' + ${reverseSortDir}}">Description</a></th>
+                                
+                                <th><a th:href="@{'/pagee/' + ${currentPage} + '?sortField=etatProjet&sortDir=' + ${reverseSortDir}}">Etat du projet</a></th> -->
+                                
+                                
+                                <!-- <th>Modifier etat</th> -->
+                                
+                               
+                               
+                                
+                                <th>Nom du client</th>
+                                <th>Pays</th>
+                                <th>Ville</th>
+                                <th>Adresse</th>
+                                
+                                <!-- <th>Ressources</th> -->
+                                
+                                <th>Actions</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            
+                            <tr th:each="projet : ${client}" >
+                            <!-- <tr th:each="projet : ${ficheProj}" > -->
+				                <!-- <td class="text-bold-500" th:text="${projet.id}"> ID</td> -->
+				                
+				                <!-- <td th:text="${listRessource.prenom}">Type</td> -->
+				               
+				                <td th:text="${projet.nomClient}">Nom</td>
+				                <td th:text="${projet.adresseClient.pays}">pays</td>
+				                <td th:text="${projet.adresseClient.ville}">ville</td>
+				                <td th:text="${projet.adresseClient.nomAdresse}">adresse</td>
+				                
+				                
+				                <!-- <td><a  href="#" th:href="@{'/editEtat/' + ${projet.id}}"
+   class="btn btn-primary"><i class="icon_pencil-edit"></i>edit status</a>
+   								</td> -->
+				                
+				                
+				                <!-- <td th:text="${#dates.format(projet.dateDebutPrev, 'dd/MM/yyyy')}">Date</td>
+				                <td th:text="${#dates.format(projet.dateFinPrev, 'dd/MM/yyyy')}">Date</td>
+				                <td th:text="${#dates.format(projet.dateDebutEffective, 'dd/MM/yyyy')}">Date</td>
+				                <td th:text="${#dates.format(projet.dateFinEffective, 'dd/MM/yyyy')}">Date</td> 
+				                <td th:text="${projet.ressources}">Ress</td>  -->
+				                <!-- <td th:each="profilType : ${ress.profil}"
+                                            th:if="(${profilType.id} == ${ress.profil.profilTypeId})"
+                                            th:text="${profilType.fonction}">Product Type
+                                </td> -->
+				                
+				                <td>
+				                     <a href="#" class="btn icon btn-primary" th:href="@{'/editClient/' + ${projet.id}}"><i data-feather="edit"></i></a>
+				                    
+				                    <br/>
+				                    
+				                    <!--
+				                    <a href="#" class="btn icon btn-danger" th:onclick="checker()" th:href="@{'/deleteFP/' + ${projet.id}}" ><i data-feather="delete"></i></a>
+				                    <a th:onclick="supprimer([[${projet.id}]])" th:href="@{'/supprimerFP/' + ${projet.id}}" >Delete</a>
+				                    
+				                    <br/>
+				                    <a href="#" class="btn icon btn-secondary"  th:href="@{'/newAct/' + ${projet.id}}"><i data-feather="list"></i>
+			                            
+			                        </a> -->
+				                </td>
+				            </tr>
+                            </tbody>
+                        </table>
+                        <script type="text/javascript">
+                    	function checker(){
+                    		var result = confirm('Are you sure?');
+                    		
+                    		if(result == false){
+                    			event.preventDefault();
+                    		}
+                    	}
+                    </script> 
+                    </div>
+                    
+                    
+                    </div>
+                    </div>
+                    
+                    
+                   
+                    
+                    
+                    
+                    
+                
+            </div>
+            
+            <!-- <div th:if ="${totalPages > 1}">
+            
+            	<div class = "row col-sm-10">
+            		
+            		<div class = "col-sm-2">
+						Total Rows: [[${totalItems}]] 
+					</div>
+					
+					<div class = "col-sm-1">
+						<span th:each="i: ${#numbers.sequence(1, totalPages)}">
+							<a th:if="${currentPage != i}" th:href="@{'/pagee/' + ${i} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">[[${i}]]</a>
+							<span th:unless="${currentPage != i}">[[${i}]]</span>  &nbsp; &nbsp;
+						</span>
+					</div>
+					
+					<div class = "col-sm-1">
+						<a th:if="${currentPage < totalPages}" th:href="@{'/pagee/' + ${currentPage + 1} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Next</a>
+						<span th:unless="${currentPage < totalPages}">Next</span>
+					</div>
+            	
+            		<div class="col-sm-1">
+	    				<a th:if="${currentPage < totalPages}" th:href="@{'/pagee/' + ${totalPages} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Last</a>
+						<span th:unless="${currentPage < totalPages}">Last</span>
+	   				 </div>
+            	
+            	</div>
+                    
+                    
+                    </div> -->
+   
+   
+</div>
+</div>
+
+		
+
+
+		 <script type="text/javascript">
+                    	function checker(){
+                    		var result = confirm('Are you sure?');
+                    		
+                    		if(result == false){
+                    			event.preventDefault();
+                    		}
+                    	}
+                    </script> 
+                    
+                    
+                    
+
+					<script th:src="@{https://code.jquery.com/jquery-3.4.1.js}"></script>
+					<!-- <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+					<script	src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script> -->
+					<script th:src="@{https://unpkg.com/sweetalert/dist/sweetalert.min.js}"></script>
+					<script th:src="@{/funciones.js}"></script>
+
+            
+</body>
+</html>

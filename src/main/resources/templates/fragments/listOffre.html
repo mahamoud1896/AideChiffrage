@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/dashboard}">
+<head>
+   
+    <title>Chiffrage Aristarc - Offre</title>
+    <link rel="shortcut icon" href="assets/images/logo_ARISTARC.png" type="image/x-icon">
+    
+</head>
+<body>
+    
+
+<div class="main-content container-fluid" layout:fragment="content">  
+
+	<div class="box-footer center">
+                        <a th:href="@{/newOffre}">
+                            <button type="button" class="btn btn-primary pull-right"><i class="fa fa-plus"></i> Add new</button>
+                        </a>
+                        <!--<form th:action="@{/product/list}" method="get">
+                            <input type="search" th:value="${param.search}" name='search' placeholder="search">
+                            <button type="submit">Search</button>
+                        </form>-->
+                    </div>
+   
+   
+   <div class="card">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h4 class="card-title">LISTE DES OFFRES</h4>
+                    <div class="d-flex ">
+                        <i data-feather="download"></i>
+                    </div>
+                    <form th:action="@{/listOffres}">
+					    Filter: <input type="text" name="keyword" id="keyword" size="50" th:value="${keyword}" required />
+					    &nbsp;
+					    <input type="submit" value="Search" />
+					    &nbsp;
+					    <input type="button" value="Clear" id="btnClear" onclick="clearSearch()" />
+					</form>
+					
+					<script type="text/javascript">
+					    function clearSearch() {
+					        window.location = "[[@{/listOffres}]]";
+					    }
+					</script>
+                </div>
+                <div class="card-body px-0 pb-0">
+                    <div class="table-responsive">
+                        <table class='table mb-0' id="table1">
+                            <thead>
+                            <tr>
+                                <th>ID Offre</th>
+                                <th>Type d'offre</th>
+                                
+                                <th>Actions</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="offre : ${offre}">
+				                <td th:text="${offre.id}">Offre ID</td>
+				                <td th:text="${offre.nomOffre}">Type</td>
+				               
+				                
+				                <td>
+				                    <a href="#" class="btn icon btn-primary" th:href="@{'/editOffre/' + ${offre.id}}"><i data-feather="edit"></i></a>
+				                    &nbsp;&nbsp;&nbsp;
+				                    <a href="#" th:onclick="checker()" class="btn icon btn-danger" th:href="@{'/deleteOffre/' + ${offre.id}}"><i data-feather="delete"></i></a>
+				                </td>
+				            </tr>
+                            </tbody>
+                        </table>
+                        
+                        <script type="text/javascript">
+                    	function checker(){
+                    		var result = confirm('Are you sure?');
+                    		
+                    		if(result == false){
+                    			event.preventDefault();
+                    		}
+                    	}
+                    </script> 
+                    </div>
+                </div>
+            </div>
+   
+   
+</div>
+
+</body>
+</html>

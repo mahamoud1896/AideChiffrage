@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/dashboard}">
+<head>
+    
+    <title>Chiffrage Aristarc</title>
+   
+</head>
+<body>
+    
+<div class="main-content container-fluid" layout:fragment="content">
+
+	
+	
+	<h1>Editer l'offre</h1>
+        <br />
+        <form action="#" th:action="@{/saveOffre}" th:object="${offre}"
+            method="post">
+ 
+            <table border="0" cellpadding="10">
+                <tr>             
+                    <td>Offre ID:</td>
+                    <td>
+                        <input type="text" th:field="*{id}" readonly="readonly" />
+                    </td>
+                </tr>        
+                <tr>             
+                    <td>Type d'offre :</td>
+                    <td>
+                        <input type="text" th:field="*{nomOffre}" />
+                    </td>
+                </tr>
+               
+                                          
+                <tr>
+                    <td >
+                    <a th:href="@{/listOffres}">
+                    <button type="button">Cancel</button>
+                	</a>
+                    <button type="submit">Save</button> </td>
+                </tr>
+            </table>
+        </form>
+	
+	
+   
+   
+</div>
+
+            
+</body>
+</html>

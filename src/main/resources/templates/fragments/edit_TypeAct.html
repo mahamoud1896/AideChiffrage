@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/dashboard}">
+<head>
+    
+    <title>Chiffrage Aristarc</title>
+    
+    
+</head>
+<body>
+    
+            
+<div class="main-content container-fluid" layout:fragment="content">
+
+	
+	
+	<h1>Editer le type d'activite</h1>
+        <br />
+        <form action="#" th:action="@{/saveTypeAct}" th:object="${typeActivite}"
+            method="post">
+ 
+            <table border="0" cellpadding="10">
+                <tr>             
+                    <td>ID type activite</td>
+                    <td>
+                        <input type="text" readonly="readonly" th:field="*{id}"  />
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td>Nom de l'activite</td>
+                    <td><input type="text" th:field="*{nomActivite}" /></td>
+                </tr>
+                        
+                                            
+                <tr>
+                    <td >
+                    <a th:href="@{/listTypeAct}">
+                    <button type="button">Cancel</button>
+                	</a>
+                    <button type="submit">Save</button> </td>
+                </tr>
+            </table>
+        </form>
+	
+	
+   
+   
+</div>
+
+            
+</body>
+</html>

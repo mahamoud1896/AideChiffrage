@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+ xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <meta charset="UTF-8">
+    <title>Chiffrage Aristarc</title>
+    <link rel="shortcut icon" href="assets/images/logo_ARISTARC.png" type="image/x-icon">
+</head>
+<body>
+<div id="sidebar" class='active' th:fragment="sidebar"><!--sidebar-->
+    <div class="sidebar-wrapper active">
+        <div class="sidebar-header">
+            <img src="assets/images/logo_ARISTARC.png" width=100% height=60%  alt="" srcset="">
+        </div>
+        <div class="sidebar-menu">
+            <ul class="menu">
+
+
+                <li class='sidebar-title'>Chiffrage Aristarc</li>
+
+				
+				
+				<li class="sidebar-item  has-sub">
+                    <a href="#" class='sidebar-link'>
+                        <i data-feather="user" width="20"></i>
+                        <span>Gestion des ressources</span>
+                    </a>
+
+                    <ul class="submenu ">
+
+                        
+                        
+                        <li>
+                            <a th:href="@{/listProfil}">Liste profil</a>
+                        </li>
+						<li>
+                            <a th:href="@{/listRess}">Liste Ressource</a>
+                        </li>
+                       
+
+                    </ul>
+
+                </li>
+				 
+				 
+             
+                 <li class="sidebar-item  has-sub">
+                    <a href="#" class='sidebar-link'>
+                        <i data-feather="folder" width="20"></i>
+                        <span>Gestion des projets</span>
+                    </a>
+                    
+                       
+					<ul class="submenu ">
+                        <li>
+                            <a th:href="@{/listTypeAct}">Liste des types d'activite</a>
+                        </li>
+                        <li>
+                            <a th:href="@{/listTypeProj}">Liste Type de projet</a>
+                        </li>
+						<li>
+                            <a th:href="@{/listProj}">Liste Fiche de projet</a>
+                        </li>
+                         <li>
+                            <a th:href="@{/listOffres}">Liste des offres</a>
+                        </li>
+                        <li>
+                            <a th:href="@{/listClients}">Liste des clients</a>
+                        </li>
+                       
+
+                    </ul>
+                    
+
+                </li>
+                
+                
+                <li class="sidebar-item  has-sub">
+                    <a href="#" class='sidebar-link'>
+                        <i data-feather="alert-octagon" width="20"></i>
+                        <span>Paramétrage</span>
+                    </a>
+                        <ul class="submenu ">
+
+						<li>
+                            <a th:href="@{/listObjectifs}">Objectif annuel</a>
+                        </li>
+                        
+
+                        
+
+                       
+
+                    </ul>
+                   
+
+                </li>
+                
+               
+                
+                 <!-- <li  class="sidebar-item  has-sub">
+                    <a href="#" class='sidebar-link'>
+                        <i data-feather="user-check" width="20"></i>
+                        <span>Gestion des comptes</span>
+                    </a>
+                        <ul class="submenu ">
+
+						
+                        <li>
+                            <a th:href="@{/listUsers}">Liste des users</a>
+                        </li>
+
+                        <li>
+                            <a th:href="@{/listRoles}">Liste des roles</a>
+                        </li>
+                        
+
+                       
+
+                    </ul>
+                   
+
+                </li> -->
+                 
+
+
+
+
+            </ul>
+        </div>
+        <div class="sidebar-menu">
+            <ul class="menu">
+            <li class='sidebar-title'>Dashboard</li>
+            
+            <li class="sidebar-item">
+                    <a th:href="@{/homePage}" class='sidebar-link'>
+                        <i data-feather="statistics" width="20"></i>
+                        <span>Statistics</span>
+                    </a>
+
+                    
+
+                </li>
+            
+            </ul>
+        </div>
+        
+        
+        <button class="sidebar-toggler btn x"><i data-feather="x"></i></button>
+    </div>
+</div>
+</body>
+</html>

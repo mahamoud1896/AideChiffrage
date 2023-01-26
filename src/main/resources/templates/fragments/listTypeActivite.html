@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/dashboard}">
+<head>
+    
+    <title>Chiffrage Aristarc</title>
+    <link rel="shortcut icon" href="assets/images/logo_ARISTARC.png" type="image/x-icon">
+    
+
+</head>
+<body>
+    
+            
+<div class="main-content container-fluid" layout:fragment="content"> 
+
+	<div class="box-footer center">
+                        <a th:href="@{/newTypeAct}">
+                            <button type="button" class="btn btn-primary pull-right"><i class="fa fa-plus"></i> Add new</button>
+                        </a>
+                       
+                    </div>
+   
+   
+   <div class="card">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h4 class="card-title">LISTE DES TYPES D'ACTIVITE</h4>
+                    <div class="d-flex ">
+                        <i data-feather="download"></i>
+                    </div>
+                </div>
+                <div class="card-body px-0 pb-0">
+                    <div class="table-responsive">
+                        <table class='table mb-0' id="table1">
+                            <thead>
+                            <tr>
+                                <th>ID type activite</th>
+                                <th>Nom de l'activite</th>
+                                                                
+                                <th >Actions</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="type : ${typeActivite}">
+				                <td th:text="${type.id}"> ID</td>
+				                <td th:text="${type.nomActivite}">Nom</td>
+				               
+				                
+				                
+				                <!-- <td sec:authorize="hasAnyAuthority('DG', 'COMMERCIAL')"> -->
+				                <td>
+				                    <a href="#" class="btn icon btn-primary"  th:href="@{'/editTypeAct/' + ${type.id}}"><i data-feather="edit"></i></a>
+				                    &nbsp;&nbsp;&nbsp;
+				                    <a href="#" th:onclick="checker()" class="btn icon btn-danger" th:href="@{'/deleteTypeAct/' + ${type.id}}"><i data-feather="delete"></i></a>
+				                </td>
+				            </tr>
+                            </tbody>
+                        </table>
+                        <script type="text/javascript">
+                    	function checker(){
+                    		var result = confirm('Are you sure?');
+                    		
+                    		if(result == false){
+                    			event.preventDefault();
+                    		}
+                    	}
+                    </script> 
+                    </div>
+                    
+                    <div th:if ="${totalPages > 1}">
+            
+            	<div class = "row col-sm-10">
+            		
+            		<div class = "col-sm-2">
+						Total Rows: [[${totalItems}]] 
+					</div>
+					
+					<div class = "col-sm-1">
+						<span th:each="i: ${#numbers.sequence(1, totalPages)}">
+							<a th:if="${currentPage != i}" th:href="@{'/page/' + ${i}}">[[${i}]]</a>
+							<span th:unless="${currentPage != i}">[[${i}]]</span>  &nbsp; &nbsp;
+						</span>
+					</div>
+					
+					<div class = "col-sm-1">
+						<a th:if="${currentPage < totalPages}" th:href="@{'/page/' + ${currentPage + 1}}">Next</a>
+						<span th:unless="${currentPage < totalPages}">Next</span>
+					</div>
+            	
+            		<div class="col-sm-1">
+	    				<a th:if="${currentPage < totalPages}" th:href="@{'/page/' + ${totalPages}}">Last</a>
+						<span th:unless="${currentPage < totalPages}">Last</span>
+	   				 </div>
+            	
+            	</div>
+            
+            </div>
+                    
+                </div>
+            </div>
+   
+   
+</div>
+
+            
+</body>
+</html>
